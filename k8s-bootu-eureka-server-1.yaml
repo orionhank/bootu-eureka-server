@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: eureka-service-1
+  name: bootu-eureka-1
+spec:
+  ports:
+  - port: 8861
+    protocol: TCP
+    targetPort: 8861
+    nodePort: 30861
+  selector:
+    app: eureka-service-1
+  type: LoadBalancer
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: eureka-service-1-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: eureka-service-1
+    spec:
+      containers:
+      - name: bootu-eureka-1
+        image: orionhank/bootu-eureka-server:latest
+        ports:
+        - containerPort: 8861
+        env:
+        - name: spring.profiles.active
+          value: "peer1"
+

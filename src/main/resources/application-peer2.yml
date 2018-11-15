@@ -1,0 +1,14 @@
+server:
+  port: 8862
+spring:
+  profiles: peer2
+  application:
+    name: bootu-eureka
+eureka:
+  instance:
+    hostname: peer2
+  server:
+    enable-self-preservation: false
+  client:
+    serviceUrl:
+      defaultZone: http://bootu-eureka-1:8861/eureka/
