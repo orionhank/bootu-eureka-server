@@ -9,6 +9,7 @@ eureka:
     hostname: peer2
   server:
     enable-self-preservation: false
+    eviction-interval-timer-in-ms: 5000
   client:
     serviceUrl:
       defaultZone: http://bootu-eureka-1:8861/eureka/
